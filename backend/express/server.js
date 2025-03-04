@@ -29,9 +29,9 @@ app.use(behaviorRoute);
 
 // API Keys
 const API_KEYS = {
-  GOOGLE: 'AIzaSyCbFzyWzaZ1JldQA76cCMFZgWTm28zhZvw',
-  VIRUSTOTAL: '72599280f8c455c5f8d27b9be98b80fd5333cf691004d238b2f5f8759a3df673',
-  URLSCAN: '8b24fa2c-88af-418f-a10a-a125d610987c'
+  GOOGLE: 'Enter Your API Key',
+  VIRUSTOTAL: 'Enter Your API Key',
+  URLSCAN: 'Enter Your API Key'
 };
 
 const connection = await mysql.createConnection(dbConfig);
