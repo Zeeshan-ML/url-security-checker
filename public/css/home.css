@@ -1,0 +1,446 @@
+/* =====================================
+   CSS Variables for Reusability
+   ===================================== */
+   html, body {
+    background-color: #0a0a0a; /* Fallback dark background */
+    transform: translateZ(0);
+    
+  }
+  
+   :root {
+    --neon-color: #0ff;
+    --secondary-color: #695ff4;
+    --gradient-cyber: linear-gradient(45deg, var(--neon-color), var(--secondary-color));
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --about-bg: rgba(0, 0, 0, 0.7);
+    --container-box-bg: #1a1a2e;
+    --box-shadow-neon: 0 0 10px rgba(0, 255, 255, 0.7);
+    --box-shadow-box: 0 0 15px rgba(0, 255, 255, 0.3);
+    --text-shadow-small: 0 0 5px var(--neon-color);
+    --text-shadow-medium: 0 0 10px var(--neon-color);
+    --box-gradient-1: linear-gradient(315deg, var(--neon-color), var(--secondary-color));
+    --box-gradient-2: linear-gradient(315deg, #00d0ff, var(--neon-color));
+    --box-gradient-3: linear-gradient(315deg, var(--secondary-color), #00d0ff);
+  }
+  
+  /* =====================================
+     Reset Paragraph Margins
+     ===================================== */
+  p {
+    margin: 0 !important;
+  }
+  
+  /* =====================================
+     Header Section
+     ===================================== */
+  #header {
+    position: relative;
+    background: url(img/header-bg.jpeg) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    overflow: hidden;
+  }
+  
+  #header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    z-index: 1;
+  }
+  
+  #header .content-section {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    animation: headerSlideIn 1.5s ease-out forwards;
+    /* Hint to browser for smoother animation */
+    will-change: transform, opacity;
+  }
+  
+  #header .content-section .section-title {
+    font-size: 60px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: var(--text-shadow-medium);
+    animation: neonPulse 2s ease-in-out infinite alternate;
+    will-change: text-shadow;
+  }
+  
+  #header .content-section .section-tagline {
+    font-size: 27px;
+    line-height: 40px;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: var(--text-shadow-small);
+  }
+  
+  /* Keyframes for Header Animations */
+  @keyframes headerSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes neonPulse {
+    from {
+      text-shadow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color), 0 0 30px var(--neon-color);
+    }
+    to {
+      text-shadow: 0 0 20px var(--neon-color), 0 0 30px var(--neon-color), 0 0 40px var(--neon-color);
+    }
+  }
+  
+  /* =====================================
+     About Section
+     ===================================== */
+  #about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 250px;
+    gap: 15px;
+    margin: 50px auto;
+    background: var(--about-bg);
+    border-radius: 8px;
+    max-width: 1200px;
+    animation: fadeInUp 1s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  #about-section .section-title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: var(--text-shadow-small);
+  }
+  
+  #about-section .section-content {
+    font-size: 17px;
+    line-height: 24px;
+    color: #fff;
+  }
+  
+  #about-section .section-btn {
+    margin-top: 30px;
+    padding: 10px 30px;
+    background: var(--gradient-cyber);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: var(--box-shadow-neon);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #about-section .section-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+  }
+  
+  /* Keyframes for fadeInUp */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* =====================================
+     Features Section
+     ===================================== */
+  #features-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 200px;
+    gap: 100px;
+    margin-bottom: 100px;
+    color: #fff;
+    animation: fadeIn 1s ease-out;
+    will-change: opacity;
+  }
+  
+  #features-section .section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  #features-section .section-content .section-title {
+    font-size: 50px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: var(--text-shadow-medium);
+  }
+  
+  #features-section .section-content .section-content {
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  #features-section .section-items {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    width: 100%;
+  }
+  
+  #features-section .section-items .section-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    animation: slideIn 1s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  #features-section .section-items .section-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+  
+  #features-section .section-items .section-item div .section-headline {
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: var(--text-shadow-small);
+  }
+  
+  #features-section .section-items .section-item div .section-content {
+    font-size: 17px;
+    color: #fff;
+  }
+  
+  #features-section .section-items .section-item div img {
+    height: 70px;
+  }
+  
+  /* Keyframes for fadeIn and slideIn */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  /* =====================================
+     Container & Animated Boxes
+     ===================================== */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    gap: 40px;
+    animation: fadeInUp 1s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  .container .box {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 30px;
+    /* Transition now animates transform instead of layout properties */
+    transition: transform 0.5s ease;
+    background: var(--container-box-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow-box);
+    will-change: transform;
+  }
+  
+  /* Neon border using pseudo-elements */
+  .container .box::before,
+  .container .box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: transform 0.5s ease, left 0.5s ease, width 0.5s ease;
+    will-change: transform, left, width;
+  }
+  
+  .container .box::after {
+    /* Reduced blur value for better performance */
+    filter: blur(15px);
+    opacity: 0.6;
+  }
+  
+  /* Box-specific gradient backgrounds */
+  .container .box:nth-child(1)::before,
+  .container .box:nth-child(1)::after {
+    background: var(--box-gradient-1);
+  }
+  
+  .container .box:nth-child(2)::before,
+  .container .box:nth-child(2)::after {
+    background: var(--box-gradient-2);
+  }
+  
+  .container .box:nth-child(3)::before,
+  .container .box:nth-child(3)::after {
+    background: var(--box-gradient-3);
+  }
+  
+  .container .box:hover::before,
+  .container .box:hover::after {
+    transform: skewX(0deg);
+    left: 20px;
+    width: calc(100% - 90px);
+  }
+  
+  /* Floating neon accents */
+  .container .box span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  
+  .container .box span::before,
+  .container .box span::after {
+    content: "";
+    position: absolute;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    /* Reduced backdrop blur for performance */
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: all 0.5s ease;
+    animation: floatNeon 2s ease-in-out infinite;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    will-change: transform, opacity;
+  }
+  
+  .container .box span::before {
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .container .box:hover span::before {
+    top: -50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+  }
+  
+  .container .box span::after {
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    animation-delay: -1s;
+  }
+  
+  .container .box:hover span::after {
+    bottom: -50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+  }
+  
+  /* Floating Neon Animation */
+  @keyframes floatNeon {
+    0%, 100% { transform: translateY(10px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Box Content */
+  .container .box .content {
+    position: relative;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1;
+    /* Transition now animates transform and padding */
+    transition: transform 0.5s ease, padding 0.5s ease;
+    color: #fff;
+    text-align: center;
+    will-change: transform, padding;
+  }
+  
+  /* Instead of animating the 'left' property,
+     we use a transform to shift the content */
+  .container .box:hover .content {
+    transform: translateX(-25px);
+    padding: 60px 40px;
+  }
+  
+  .container .box .content h2 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: var(--text-shadow-small);
+  }
+  
+  .container .box .content p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.4em;
+  }
+  
+  .container .box .content a {
+    display: inline-block;
+    font-size: 1.1em;
+    color: #fff;
+    background: var(--gradient-cyber);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .container .box .content a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  }
+  

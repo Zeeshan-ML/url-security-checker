@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>External API Results</title>
+  <style>
+      /* Overall Page Styling */
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a0a0a, #232228);
+    background-size: 200% 200%;
+    animation: backgroundPulse 20s ease infinite;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #fff;
+  }
+
+  @keyframes backgroundPulse {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Main Container (Card) */
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background: #2a2d3a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2);
+    animation: fadeIn 1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Header Styling */
+  h1 {
+    text-align: center;
+    color: #0ff;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px #0ff;
+    animation: neonPulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes neonPulse {
+    from { 
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff; 
+    }
+    to { 
+      text-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff; 
+    }
+  }
+
+  /* Section Styling for Result and Risk Level */
+  .result, .risk-level {
+    font-size: 1.5em;
+    margin: 20px 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  /* Details List Styling */
+  .details {
+    margin-top: 20px;
+  }
+
+  .details ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .details ul li {
+    background: #3b3f4a;
+    margin: 8px 0;
+    padding: 10px 15px;
+    border-left: 4px solid #0ff;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .details ul li:hover {
+    transform: scale(1.02);
+    background: #4a4e5a;
+  }
+
+  /* Back Link Styling */
+  a.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0ff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  a.back-link:hover {
+    color: #fff;
+  }
+
+  /* Footer Styling */
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #bbb;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container" id="content">
+    <h1>External API Results</h1>
+    <div class="result">
+      <strong>Result:</strong> <span id="result">Loading...</span>
+    </div>
+    <div class="risk-level">
+      <strong>Risk Level:</strong> <span id="riskLevel">Loading...</span>
+    </div>
+    <div class="details">
+      <strong>Details:</strong>
+      <ul id="detailsList">
+        <!-- Details from the analysis will be inserted here -->
+      </ul>
+    </div>
+    <a href="index.html" class="back-link">← Back to Analysis</a>
+  </div>
+  <div class="footer">
+    &copy; 2025 SecureLinkGuard. All rights reserved.
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Retrieve analysis data from session storage
+      const analysisDataString = sessionStorage.getItem("analysisData");
+      if (analysisDataString) {
+        const data = JSON.parse(analysisDataString);
+        // Set the Result and Risk Level from the returned JSON
+        document.getElementById("result").textContent = data.result || "N/A";
+        document.getElementById("riskLevel").textContent = data.riskLevel || "N/A";
+  
+        // Display the details (an array of strings)
+        const detailsList = document.getElementById("detailsList");
+        detailsList.innerHTML = "";
+        if (data.details && Array.isArray(data.details)) {
+          data.details.forEach(detail => {
+            const li = document.createElement("li");
+            li.textContent = detail;
+            detailsList.appendChild(li);
+          });
+        } else if (data.details) {
+          // In case details is a single string instead of an array
+          const li = document.createElement("li");
+          li.textContent = data.details;
+          detailsList.appendChild(li);
+        } else {
+          const li = document.createElement("li");
+          li.textContent = "No additional details available.";
+          detailsList.appendChild(li);
+        }
+      } else {
+        // If no analysis data is found, inform the user
+        document.getElementById("content").innerHTML =
+          "<p>No analysis data available. Please run an analysis first.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Behavior Analysis</title>
+  <style>
+/* Overall Body Styling */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0a0a0a, #232228);
+  background-size: 200% 200%;
+  animation: backgroundPulse 20s ease infinite;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #fff;
+}
+
+@keyframes backgroundPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Container for the analysis content */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px 30px;
+  background: #2a2d3a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2);
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading Styling */
+h1 {
+  text-align: center;
+  color: #0ff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #0ff;
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+  from { 
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff; 
+  }
+  to { 
+    text-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff; 
+  }
+}
+
+/* Analysis Items */
+.analysis-item {
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #3b3f4a;
+  border-left: 4px solid #0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.analysis-item:hover {
+  transform: scale(1.02);
+  background: #4a4e5a;
+}
+
+/* Back Link Styling */
+a.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #0ff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a.back-link:hover {
+  color: #fff;
+}
+
+/* Footer Styling */
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #bbb;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  animation: fadeIn 1s ease-out;
+  animation-delay: 0.5s;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container" id="content">
+    <h1>URL Behavior Analysis</h1>
+    <div class="analysis-item">
+      <strong>Risk Score:</strong> <span id="riskScore">Loading...</span>
+    </div>
+    <div id="behaviorDetails">
+      <!-- Detailed behavior events will be listed here -->
+    </div>
+    <a href="index.html" class="back-link">← Back to Analysis</a>
+  </div>
+  <div class="footer">
+    &copy; 2025 SecureLinkGuard. All rights reserved.
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const riskScoreEl = document.getElementById("riskScore");
+      const behaviorDetailsEl = document.getElementById("behaviorDetails");
+      const behaviorDataString = sessionStorage.getItem("behaviorData");
+      if (behaviorDataString) {
+        const data = JSON.parse(behaviorDataString);
+        riskScoreEl.textContent = data.riskScore ?? 'N/A';
+
+        // Create a list of behavior events
+        const events = data.eventData;
+        behaviorDetailsEl.innerHTML = "";
+        for (const [key, value] of Object.entries(events)) {
+          const div = document.createElement("div");
+          div.className = "analysis-item";
+          div.textContent = `${key}: ${value}`;
+          behaviorDetailsEl.appendChild(div);
+        }
+      } else {
+        document.getElementById("content").innerHTML =
+          "<p>No behavior analysis data available. Please run an analysis first.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

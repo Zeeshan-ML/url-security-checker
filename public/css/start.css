@@ -1,0 +1,353 @@
+/* =====================================
+   CSS Variables for Reusability
+   ===================================== */
+   :root {
+    --primary-color: #0ff;
+    --secondary-color: #695ff4;
+    --gradient-button: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    --body-bg-gradient: linear-gradient(135deg, #0a0a0a, #232228);
+    --body-bg-size: 400% 400%;
+    
+    --neon-text-shadow-small: 0 0 3px var(--primary-color);
+    --neon-text-shadow-medium: 0 0 5px var(--primary-color);
+    --neon-text-shadow-large: 0 0 10px var(--primary-color);
+    
+    --neon-box-shadow-input: 0 0 15px rgba(105, 95, 244, 0.5),
+                               0 0 20px rgba(0, 255, 255, 0.5);
+    --neon-box-shadow-input-focus: 0 0 25px rgba(0, 255, 255, 0.7);
+    --neon-box-shadow-button: 0 0 10px rgba(0, 255, 255, 0.7);
+    --neon-box-shadow-button-hover: 0 0 20px rgba(0, 255, 255, 1);
+    
+    --card-bg: #1a1a2e;
+    --modal-bg: #1a1a2e;
+    --modal-border: 1px solid var(--primary-color);
+  }
+  
+  /* =====================================
+     Base Styles
+     ===================================== */
+  body {
+    margin: 0;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background: var(--body-bg-gradient);
+    background-size: var(--body-bg-size);
+    animation: backgroundPulse 20s ease infinite;
+    color: #fff;
+    /* Hint that the background position is animating */
+    will-change: background-position;
+  }
+  
+  @keyframes backgroundPulse {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  p { 
+    margin: 0; 
+  }
+  
+  .d-none { 
+    display: none !important; 
+  }
+  
+  /* =====================================
+     Form Section
+     ===================================== */
+  #form-section {
+    margin: 100px auto 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    animation: fadeInUp 1s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  #form-section form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  #form-section form .section-headline {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: var(--neon-text-shadow-medium);
+  }
+  
+  #form-section form .section-content {
+    font-size: 15px;
+    color: #fff;
+    text-shadow: var(--neon-text-shadow-small);
+  }
+  
+  #form-section form .section-input {
+    width: 550px;
+    padding: 7px 15px;
+    height: 30px;
+    border: 3px solid var(--secondary-color);
+    background: transparent;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 17px;
+    box-shadow: var(--neon-box-shadow-input);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    will-change: border, box-shadow;
+  }
+  
+  #form-section form .section-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: var(--neon-box-shadow-input-focus);
+    outline: none;
+  }
+  
+  #form-section form button {
+    padding: 10px 40px;
+    font-size: 18px;
+    background: var(--gradient-button);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: var(--neon-box-shadow-button);
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: pulseButton 2s infinite;
+    will-change: transform, box-shadow;
+  }
+  
+  @keyframes pulseButton {
+    0%, 100% { box-shadow: var(--neon-box-shadow-button); }
+    50%      { box-shadow: var(--neon-box-shadow-button-hover); }
+  }
+  
+  #form-section form button:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    transform: scale(1.03);
+  }
+  
+  /* =====================================
+     How-It-Works Section
+     ===================================== */
+  #how-it-works-section {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    animation: fadeIn 1.2s ease-out;
+    will-change: opacity;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  #how-it-works-section .section-title {
+    font-size: 50px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: var(--neon-text-shadow-large);
+  }
+  
+  #how-it-works-section .section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  #how-it-works-section .section-container div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  
+  #how-it-works-section .section-container .section-headline {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: var(--neon-text-shadow-medium);
+  }
+  
+  #how-it-works-section .section-container .section-content {
+    font-size: 17px;
+    color: #fff;
+    text-shadow: var(--neon-text-shadow-small);
+  }
+  
+  /* =====================================
+     Modal Styling
+     ===================================== */
+  .modal-content {
+    background-color: var(--modal-bg);
+    margin: 5% auto;
+    padding: 50px;
+    border: var(--modal-border);
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    position: relative;
+    animation: modalFadeIn 0.5s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  
+  .close {
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #fff;
+    text-shadow: var(--neon-text-shadow-large);
+    text-decoration: none;
+  }
+  
+  .modal .details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .modal .details-container .details-item {
+    /* Flex properties will apply once display is toggled via JS */
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    /* Initially hidden; toggle as needed */
+    display: none;
+  }
+  
+  .modal h1 {
+    font-size: 35px;
+    text-shadow: var(--neon-text-shadow-large);
+  }
+  
+  .modal p,
+  .modal h1,
+  .modal h2 {
+    color: #fff !important;
+    text-shadow: var(--neon-text-shadow-medium);
+  }
+  
+  /* Combine common link/button styles */
+  .modal .details-container .details-item a,
+  #viewBehaviorBtn,
+  #submissionDetailsURL {
+    padding: 10px 30px;
+    text-decoration: none;
+    background: var(--gradient-button);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: var(--neon-box-shadow-button);
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+  
+  .modal .details-container .details-item a:hover,
+  #viewBehaviorBtn:hover,
+  #submissionDetailsURL:hover {
+    transform: scale(1.05);
+  }
+  
+  .modal #safeSection {
+    margin-top: 50px;
+  }
+  
+  /* =====================================
+     Card Section
+     ===================================== */
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    gap: 3.25rem;
+    position: relative;
+    z-index: 10;
+    align-items: center;
+    padding: 5em 0;
+    animation: fadeIn 1.5s ease-out;
+    will-change: opacity;
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  section .card {
+    position: relative;
+    z-index: 555;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    border-radius: 2.25rem;
+    background: var(--card-bg);
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2),
+                0 0 40px rgba(0, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideUp 0.5s ease-out;
+    will-change: transform, opacity;
+  }
+  
+  section .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 50px rgba(0, 255, 255, 0.4);
+  }
+  
+  section .card::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2.25rem;
+    background: var(--gradient-button);
+    z-index: -1;
+    opacity: 0.5;
+    /* Reduced blur for better performance */
+    filter: blur(4px);
+  }
+  
+  /* Optional variation for blue cards */
+  section .blue {
+    background: radial-gradient(ellipse at right top, var(--primary-color) 0%, #151419 45%, #151419 100%);
+  }
+  
+  section .blue::before {
+    background: linear-gradient(45deg, #232228, #232228, #232228, #232228, var(--primary-color)) border-box;
+  }
+  

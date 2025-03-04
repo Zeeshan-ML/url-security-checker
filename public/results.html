@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <title>SecureLinkGuard | Results</title>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="white" class="bi bi-cpu" viewBox="0 0 16 16">
+          <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+        </svg>
+        <p><a href="index.html">SecureLinkGuard</a></p>
+      </div>
+      <button class="hamburger" id="hamburger">☰</button>
+    </div> <!-- Add this closing div tag -->
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="start.html#how-it-works-section">How it works</a></li>
+      <li><a href="index.html#features-section">Features</a></li>
+      <li><a href="index.html#benefits-section">Benefits</a></li>
+    </ul>
+  </nav>
+
+  <section id="PhishingDetailsModal" class="modal" style="display:block;">
+    <div class="modal-content card blue">
+      <span class="close" style="cursor:pointer; float:right; font-size:28px; font-weight:bold;">&times;</span>
+      <h1 id="targetURL">Results Will Appear Here</h1>
+      <center>
+        <img id="secureImg" src="img/secure.gif" style="max-height: 300px; display: none;">
+        <img id="dangerImg" src="img/danger.gif" style="max-height: 300px; display: none;">
+      </center>
+      <div class="details-container d-none" id="details-section">
+
+        <div class="details-item">
+          <a href="details.html" target="_blank" class="more-info-btn" id="submissionDetailsURL">View External API Details</a>
+        </div>
+      </div>
+      <center>
+        <h2 class="d-none" id="safeSection">No phishing threats detected. This URL seems Secure</h2>
+      </center>
+    </div>
+  </section>
+
+  <div id="footer">
+    <select>
+      <option value="en">English</option>
+    </select>
+    <p>© 2025 &nbsp; &#9679; &nbsp; Privacy &nbsp; &#9679; &nbsp; Terms &nbsp; &#9679; &nbsp; Sitemap</p>
+  </div>
+
+  <script src="js/start.js"></script>
+  <script src="js/navbar.js"></script>
+</body>
+</html>

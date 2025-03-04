@@ -1,0 +1,244 @@
+/* =====================================
+   Optional Font Import (uncomment if needed)
+   ===================================== */
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap'); */
+
+/* =====================================
+   CSS Variables for Reusability
+   ===================================== */
+   :root {
+    --bg-gradient: linear-gradient(135deg, #0a0a0a, #232228);
+    --bg-gradient-size: 400% 400%;
+    --gradient-duration: 15s;
+    
+    --navbar-bg: linear-gradient(90deg, #1a1a2e, #16213e, #0f3460);
+    --navbar-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+    
+    --font-color: #fff;
+    --neon-color: #0ff;
+    
+    --logo-font-size: 36px;
+    --logo-text-shadow: 0 0 5px var(--neon-color), 0 0 10px var(--neon-color);
+    --logo-pulse-text-shadow: 0 0 15px var(--neon-color), 0 0 20px var(--neon-color);
+    
+    --nav-link-font-size: 18px;
+    --nav-link-font-weight: 600;
+    --nav-link-underline-height: 2px;
+    
+    --footer-bg: linear-gradient(90deg, #1a1a2e, #0f3460);
+    --footer-select-bg: #232228;
+    
+    --mobile-nav-bg: #121212;
+  }
+  
+  /* =====================================
+     Global Styles
+     ===================================== */
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-gradient);
+    background-size: var(--bg-gradient-size);
+    animation: gradientBG var(--gradient-duration) ease infinite;
+    color: var(--font-color);
+    overflow-x: hidden;
+    /* Hint for animating background-position */
+    will-change: background-position;
+  }
+  
+  /* Background Gradient Animation */
+  @keyframes gradientBG {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* =====================================
+     Navbar & Header Area
+     ===================================== */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navbar-bg);
+    padding: 10px 20px;
+    box-shadow: var(--navbar-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  /* Logo Styling with Neon Glow & Pulse */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  .logo p a {
+    text-decoration: none;
+    /* color: var(--font-color); */
+  }
+  .logo p {
+    font-size: var(--logo-font-size);
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--font-color);
+    text-shadow: var(--logo-text-shadow);
+    animation: pulseNeon 2s ease-in-out infinite;
+    /* Hint to optimize the neon pulse effect */
+    will-change: text-shadow;
+  }
+  
+  /* Neon Pulse Keyframes for Logo Text */
+  @keyframes pulseNeon {
+    0%, 100% { text-shadow: var(--logo-text-shadow); }
+    50%      { text-shadow: var(--logo-pulse-text-shadow); }
+  }
+  
+  /* Hamburger Menu (Mobile) */
+  .hamburger {
+    font-size: 1.5rem;
+    background: none;
+    color: var(--font-color);
+    border: none;
+    cursor: pointer;
+    display: none;
+  }
+  
+  /* =====================================
+     Navigation Links
+     ===================================== */
+  /* Reset default list margins */
+  ul {
+    margin: 0 !important;
+    padding: 0;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+  }
+  
+  .nav-links li {
+    padding: 10px 15px;
+    position: relative;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: var(--font-color);
+    font-size: var(--nav-link-font-size);
+    font-weight: var(--nav-link-font-weight);
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  /* Neon Underline Effect */
+  .nav-links li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: var(--nav-link-underline-height);
+    background: var(--neon-color);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links li a:hover::after,
+  .nav-links li a:focus::after {
+    width: 100%;
+  }
+  
+  /* Active Link State */
+  .active,
+  .nav-links li a.active {
+    color: var(--neon-color);
+  }
+  
+  /* =====================================
+     Footer Styling
+     ===================================== */
+  #footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px;
+    background: var(--footer-bg);
+    gap: 10px;
+  }
+  
+  #footer select {
+    height: 40px;
+    width: 120px;
+    background: var(--footer-select-bg);
+    border: none;
+    color: var(--font-color);
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  #footer p {
+    color: var(--font-color);
+    font-size: 16px;
+  }
+  
+  /* =====================================
+     Mobile Styles
+     ===================================== */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+    
+    .navbar-left {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background: var(--mobile-nav-bg);
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      padding: 10px 0;
+      animation: fadeIn 0.5s ease forwards;
+      /* Hint for smoother opacity transition */
+      will-change: opacity;
+    }
+    
+    .nav-links.show {
+      display: flex;
+    }
+    
+    .nav-links li {
+      width: 100%;
+      text-align: center;
+      padding: 12px 0;
+    }
+  }
+  
+  /* Fade In Animation for Mobile Navigation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
