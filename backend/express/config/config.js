@@ -2,7 +2,7 @@ export const dbConfig = {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'essa123',
+    password: 'Your Password',
     database: 'url_checker',
     connectTimeout: 50000,
   };
